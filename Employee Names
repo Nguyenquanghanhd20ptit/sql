@@ -1,0 +1,4 @@
+https://www.hackerrank.com/contests/simply-sql-the-sequel/challenges/name-of-employees/problem
+
+select name from Employee
+order by name ASC;

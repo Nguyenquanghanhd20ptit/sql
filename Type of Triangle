@@ -1,0 +1,14 @@
+https://www.hackerrank.com/contests/simply-sql/challenges/what-type-of-triangle/problem
+
+select
+case
+when A + B > C and A + C > B and B + C > A
+then 
+    case 
+        when A = B and B = C and C = A then 'Equilateral'
+        when A != B and B != C and C != A then 'Scalene'
+        else 'Isosceles'
+        end
+    else   'Not A Triangle'
+    end
+from TRIANGLES 

@@ -1,0 +1,10 @@
+https://www.hackerrank.com/contests/simply-sql/challenges/the-pads/problem
+
+select concat( name ,'(', substr(Occupation ,1,1),')' ) 
+from OCCUPATIONS 
+order by name ;
+
+select concat('There are a total of ',count(Occupation),' ',lower(Occupation),'s.')
+from OCCUPATIONS
+group by Occupation
+order by count(name),  Occupation;

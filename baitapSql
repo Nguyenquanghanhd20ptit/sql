@@ -1,0 +1,61 @@
+Phần II, truy vấn dữ liệu
+
+1, lấy ra tên và giá của những sản phẩm là điện thoại với giá từ 10 triệu đến 100 triệu đồng được sắp xếp theo thứ tự tăng dần
+
+select ten,price from product where category_id = 2 
+and price between 10000000 and 100000000
+order by price asc;
+
+
+
+
+
+2,Lấy ra tên của category có số lượng sản phẩm lớn hơn 5 và được sắp xếp tăng dần theo số lượng của nó ?
+
+
+
+select c.ten,count(p.id) as count from product as p
+inner join category as c on p.category_id = c.id
+group by  p.category_id
+having count(p.id) > 5  
+order by count(p.id) asc
+
+
+
+
+
+
+
+
+3, lấy ra 10 khách hàng mua nhiều nhất ở cửa hàng và sắp xếp theo tổng số tiền giảm dần
+
+select u.hoten,sum(totalprice)  
+from bills as b inner join user as u on u.id = b.user_id
+group by b.user_id
+limit 5
+
+
+
+4,
+Tính số phần trăm số lượng sản phẩm đã được bán ra của các sản phẩm trong đó sản phẩm đó phải  có số lượng bán ra lớn hơn 0.005% và sắp xếp theo thứ tự tăng dần
+
+select p.ten,sum(b.quanty) as so_luong_ban, p.quanty as so_luong_san_pham,
+ (CAST(sum(b.quanty)/p.quanty AS float))  as persent 
+ from product as p inner join  billdetail as b on p.id = b.product_id
+group by b.product_id
+having persent > 0.005 
+order by persent asc;
+
+
+
+
+
+5, tìm 5 sản phẩm có lượt đánh giá cao nhất
+
+select p.ten,avg(CAST(c.star as float)) as persent from comment as c
+inner join product as p on c.product_id = p.id
+group by c.product_id
+order by persent asc
+limit 5;
+
+
